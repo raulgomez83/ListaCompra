@@ -35,7 +35,7 @@ class AppUI {
   //Asignar eventos a los elementos del UI
   addEvents() {
     // Al enviar el formulario debe añadirse un todo a la db
-    this.form.addEventListener("submit", event => {
+    this.form.addEventListener("submit", (event) => {
       event.preventDefault();
       const todoInput = this.form.elements.todotext;
       try {
@@ -43,7 +43,9 @@ class AppUI {
       } catch (error) {
         if (error.message === "Este todo ya está en la lista") {
           if (
-            confirm("Ese todo ya está en la lista. ¿Quieres añadirlo de nuevo?")
+            confirm(
+              "Ese todo ya está en la lista.  ¿Quieres añadirlo de nuevo?"
+            )
           ) {
             this.db.addTodo(todoInput.value, true);
           }
@@ -56,13 +58,13 @@ class AppUI {
     });
 
     //Al clickar en limpar completados debe ejecutarse el método de la db correspondiente
-    this.clean.addEventListener("click", event => {
+    this.clean.addEventListener("click", (event) => {
       this.db.cleanTodoList();
       this.render();
     });
 
     //Al clickar en borrar todo debe ejecutarse el método de la db correspondiente
-    this.destroy.addEventListener("click", event => {
+    this.destroy.addEventListener("click", (event) => {
       const confirmation = window.prompt(
         "Escribe BORRAR para borrar todos los todos"
       );
@@ -74,7 +76,7 @@ class AppUI {
     });
 
     // Al clicar en el ul si clico en un checkbox marcar el todo correspondiente como done o no done
-    this.list.addEventListener("click", event => {
+    this.list.addEventListener("click", (event) => {
       const target = event.target;
 
       if (target.matches("input[type=checkbox]")) {
